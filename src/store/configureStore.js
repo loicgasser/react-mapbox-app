@@ -11,7 +11,6 @@ const reducer = (state = {}, action) => {
         case MapActionTypes.zoomend:
             console.log(action)
             return {
-                ...state,
                 zoom: map.getZoom()
             }
         default:

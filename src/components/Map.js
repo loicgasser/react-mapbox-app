@@ -2,6 +2,8 @@ import React from 'react'
 import mapboxgl from 'mapbox-gl'
 import * as MapboxGLRedux from '@mapbox/mapbox-gl-redux'
 
+const ReduxMapControl= MapboxGLRedux.ReduxMapControl
+
 const loadJSON = (url, cb) => {
     fetch(url, { mode: 'cors' })
     .then(function (response) {
@@ -30,7 +32,7 @@ export default class Map extends React.Component {
         const url = this.state.style
         const key = this.state.key
         const map = new mapboxgl.Map({ container })
-        const control = new MapboxGLRedux.ReduxMapControl(container)
+        const control = new ReduxMapControl(container)
         map.addControl(control)
 
         loadJSON(url, (style) => {
