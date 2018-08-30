@@ -1,5 +1,6 @@
 import React from 'react'
 import mapboxgl from 'mapbox-gl'
+import * as MapboxGLRedux from '@mapbox/mapbox-gl-redux'
 
 const loadJSON = (url, cb) => {
     fetch(url, { mode: 'cors' })
@@ -28,13 +29,14 @@ export default class Map extends React.Component {
         const container = this.state.container
         const url = this.state.style
         const key = this.state.key
+        const map = new mapboxgl.Map({ container })
+        const control = new MapboxGLRedux.ReduxMapControl(container)
+        map.addControl(control)
+
         loadJSON(url, (style) => {
             style.sources.openmaptiles.url = style.sources.openmaptiles.url.replace('{key}', key)
             style.glyphs = style.glyphs.replace('{key}', key)
-            return new mapboxgl.Map({
-                container: container,
-                style: style
-            })
+            map.setStyle(style)
         })
     }
     render() {

@@ -8,6 +8,7 @@
     "build": "webpack"
   },
   "dependencies": {
+    "@mapbox/mapbox-gl-redux": "^0.1.0",
     "babel-cli": "6.24.1",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
