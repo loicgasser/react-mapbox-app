@@ -1,0 +1,15 @@
+.zoom-control {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: grid;
+    margin: $s-size;
+}
+
+.zoom-control__button {
+    padding: $s-size;
+    font-weight: bold;
+    font-size: 1.8rem;
+    background: $dark-grey;
+    color: $green;
+}

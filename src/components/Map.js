@@ -1,8 +1,8 @@
 import React from 'react'
 import mapboxgl from 'mapbox-gl'
-import * as MapboxGLRedux from '@mapbox/mapbox-gl-redux'
 
-const ReduxMapControl= MapboxGLRedux.ReduxMapControl
+const defaultStyle = 'https://rawgit.com/openmaptiles/klokantech-basic-gl-style/master/style.json'
+const defaultKey = 'Og58UhhtiiTaLVlPtPgs'
 
 const loadJSON = (url, cb) => {
     fetch(url, { mode: 'cors' })
@@ -21,20 +21,16 @@ const loadJSON = (url, cb) => {
 export default class Map extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {
-            container: props.container ? props.container : 'mapbox-map',
-            style: props.style ? props.style : 'https://rawgit.com/openmaptiles/klokantech-basic-gl-style/master/style.json',
-            key: props.key ? props.key : 'Og58UhhtiiTaLVlPtPgs'
-        }
+        this.control = props.control
+        this.container = props.container
+        this.style = props.style ? props.style : defaultStyle
+        this.key = props.key ? props.key : defaultKey
     }
     componentDidMount() {
-        const container = this.state.container
-        const url = this.state.style
-        const key = this.state.key
-        const map = new mapboxgl.Map({ container })
-        const control = new ReduxMapControl(container)
-        map.addControl(control)
-
+        const url = this.style
+        const key = this.key
+        const map = new mapboxgl.Map({ container: this.container })
+        map.addControl(this.control)
         loadJSON(url, (style) => {
             style.sources.openmaptiles.url = style.sources.openmaptiles.url.replace('{key}', key)
             style.glyphs = style.glyphs.replace('{key}', key)
@@ -42,6 +38,6 @@ export default class Map extends React.Component {
         })
     }
     render() {
-        return <div id={this.state.container}></div>
+        return <div id={this.container}></div>
     }
 }
