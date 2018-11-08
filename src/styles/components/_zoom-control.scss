@@ -1,15 +1,25 @@
 .zoom-control {
-    position: absolute;
-    top: 0;
-    right: 0;
-    display: grid;
-    margin: $s-size;
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: grid;
+  margin: $s-size;
 }
 
 .zoom-control__button {
-    padding: $s-size;
-    font-weight: bold;
-    font-size: 1.8rem;
-    background: $dark-grey;
-    color: $green;
+  font-weight: bold;
+  font-size: 2.04rem;
+  background: $dark-grey;
+  color: $green;
+  border: $green 0.2rem solid;
+  width: 3.5rem;
+  height: 3.5rem;
+  text-align: center;
+  cursor: pointer;
+  font-family: "Lucida Grande,Verdana,Geneva,Lucida,Arial,Helvetica,sans-serif";
+  opacity: 0.75;
+  &:hover,
+  &:focus {
+    opacity: 0.95;
+  }
 }
